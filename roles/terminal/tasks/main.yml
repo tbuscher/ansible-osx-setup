@@ -1,0 +1,16 @@
+---
+- name: "Copy the terminal profile to /tmp"
+  copy:
+    src: "Solarized Dark.terminal"
+    dest: "/tmp/Solarized Dark.terminal"
+
+- name: "Install the terminal profile:
+  shell: "open 'Solarized Dark.terminal'"
+  args:
+    chdir: /tmp
+
+- name: "Update the default window setting"
+  shell: defaults write com.apple.terminal "Default Window Settings" -string "Solarized Dark"
+
+- name: "Update the startup window setting"
+  shell: defaults write com.apple.Terminal "Startup Window Settings" -string "Solarized Dark"

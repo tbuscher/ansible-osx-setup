@@ -2,9 +2,11 @@
 xcode-select --install
 sudo xcodebuild -license
 /usr/sbin/softwareupdate --install-rosetta
-curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-python3 get-pip.py
-sudo pip3 install --ignore-installed ansible
+
+curl -LsSf https://astral.sh/uv/install.sh | sh
+uv venv --python 3.13
+uv pip install ansible
+source .venv/bin/activate
 ansible-galaxy install -r requirements.yml
 
 ansible-playbook -i "localhost," -c local ansible_osx.yml --ask-become-pass
